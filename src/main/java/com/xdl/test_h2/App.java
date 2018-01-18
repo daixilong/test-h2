@@ -1,5 +1,6 @@
 package com.xdl.test_h2;
 
+import java.util.List;
 import java.util.Random;
 
 import org.beetl.sql.core.ClasspathLoader;
@@ -12,6 +13,7 @@ import org.beetl.sql.core.SQLManager;
 import org.beetl.sql.core.UnderlinedNameConversion;
 import org.beetl.sql.core.db.DBStyle;
 import org.beetl.sql.core.db.H2Style;
+import org.beetl.sql.core.engine.PageQuery;
 import org.beetl.sql.ext.DebugInterceptor;
 
 import com.xdl.test_h2.model.TbUser;
@@ -34,8 +36,40 @@ public class App
      // sqlManager.genSQLFile("TB_USER","tbuser");//设置sql文件生成
 			//sqlManager.genPojoCodeToConsole("TB_USER");//控制台自动生成代码
 			//sqlManager.genSQLTemplateToConsole("TB_USER");//控制台自动生成sql文件
-      TbUser tbUser=new TbUser();
+      
+      /*
+       * 执行了添加的方法
+       * TbUser tbUser=new TbUser();
       tbUser.setName("小呆");
-      sqlManager.insert(tbUser);
+      sqlManager.insert(tbUser);*/
+      
+      /*
+       * 执行了更新的方法
+       * TbUser tbUser=new TbUser();
+      tbUser.setId(1);
+      tbUser.setName("张三");
+      sqlManager.updateById(tbUser);*/
+      
+     /* 
+      * 根据id查询单条数据
+      * TbUser tbUser= sqlManager.unique(TbUser.class, 1);
+      System.out.println(tbUser.getName());*/
+      
+  
+     /*  
+      * 查询所有的相关记录
+      * List<TbUser> tbUsers=sqlManager.select("tbUser.sample", TbUser.class);
+      for (TbUser tbUser : tbUsers) {
+				  System.out.println(tbUser.getName());
+			}*/
+      
+    /*  
+     * 分页的相关查询
+     * PageQuery<TbUser> query=new PageQuery<TbUser>(0, 1);
+      PageQuery<TbUser> s = sqlManager.pageQuery("tbUser.sample", TbUser.class, query);
+      List<TbUser> tbUsers= s.getList();
+      for (TbUser tbUser : tbUsers) {
+				System.out.println(tbUser.getName());
+			}*/
     }
 }
